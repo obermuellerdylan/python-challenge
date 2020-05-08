@@ -12,24 +12,24 @@ def election_results():
     candidates = []
     cand_votes = []
     cand_perc = []
-
+    # put total votes in list
     for row in csvreader:
          totalvotes.append(row[2])
 
     for name in totalvotes:
-
+        #please each candidate name in list
         if name not in candidates:
             candidates.append(name)
             cand_votes.append(0)
             cand_perc.append(0)
-
+        #count votes
         for i in range(len(candidates)):
              if candidates[i] == name:
                  cand_votes[i] += 1
-                 
+     # calc percentage of votes for each candidate            
     for i in range(len(cand_perc)):
         cand_perc[i] = (round((cand_votes[i]/len(totalvotes)*100),3))
-
+        #find max votes and place name in variable
         if max(cand_votes) == cand_votes[i]:
             winner = candidates[i]
     
@@ -48,11 +48,11 @@ def election_results():
     # # Specify the file to write to
     output_path = os.path.join("Resources", "main.txt")
 
-    # # Open the file using "write" mode. Specify the variable to hold the contents
+    
     with open(output_path, 'w') as txtfile:
     
 
-    #     # Write the first row (column headers)
+         # Write to txt file
          txtfile.write('Election Resutls\n')
          txtfile.write('-----------------------\n')
          txtfile.write(f'Total Votes: {len(totalvotes)}\n')
